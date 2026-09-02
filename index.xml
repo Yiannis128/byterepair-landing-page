@@ -7,6 +7,7 @@ that doesn&amp;rsquo;t line up with the first.&lt;/p&gt;
 model comes out: issues with severity and error type, stack traces, and
 counterexample traces with variable assignments.&lt;/p&gt;</description></item><item><title>Entoli</title><link>https://byterepair.io/products/entoli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://byterepair.io/products/entoli/</guid><description>&lt;p&gt;&lt;em&gt;Entoli&lt;/em&gt; (εντολή) is the Greek word for a command, both the one you give and the
 one the agent runs.&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/mnS6cIeNUFU?si=62bPXbZITXLABoBE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;Entoli is a general-purpose open-source assistant designed to give you
 full-control. It uses Byte Repair technologies to securely check the code it
 generates in order to ensure it is safe and can be trusted. In the age of
