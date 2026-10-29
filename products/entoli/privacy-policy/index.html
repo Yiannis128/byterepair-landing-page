@@ -7,9 +7,14 @@ device. This policy describes what the app stores and what leaves your device.</
 results, and files you attach.</li><li><strong>Settings</strong> — the LLM providers you configure, including their API keys,
 the models you pick, the theme, and command environment variables.</li><li><strong>Memory</strong> — facts the agent extracts from conversations to recall in later
 ones, and the instruction files you write.</li><li><strong>Workspace files</strong> — files the agent creates or edits while running
-commands.</li><li><strong>Reminders</strong> — the name, time, and prompt of each reminder you set.</li></ul><p>None of this leaves your device except as described below. Uninstalling the
-app removes all of it. Backups are user-initiated exports to a local file the
-user chooses.</p><h2 id=data-sent-to-third-parties>Data sent to third parties</h2><p>The app has no server of its own. No analytics, telemetry, or crash reporting
+commands.</li><li><strong>Reminders</strong> — the name, time, and prompt of each reminder you set.</li><li><strong>Agent browser profile</strong> (desktop) — the cookies, logins, history and site
+data of the browser the agent drives, kept in the app&rsquo;s cache directory,
+apart from your own browser&rsquo;s profile.</li></ul><p>None of this leaves your device except as described below. Uninstalling the
+app removes all of it, except on desktop, where the data and cache
+directories stay until you delete them. The agent browser&rsquo;s profile can be
+deleted from Settings > Agent Browser > Browser data. Backups are
+user-initiated exports to a local file the user chooses, and do not include
+the browser profile.</p><h2 id=data-sent-to-third-parties>Data sent to third parties</h2><p>The app has no server of its own. No analytics, telemetry, or crash reporting
 runs in the app, and no data is sent to a server controlled by the app.</p><p>The following third parties receive data when you use the relevant features:</p><h3 id=llm-providers-you-configure>LLM providers you configure</h3><p>When you send a message, the app calls the LLM provider you have configured
 directly. It sends the conversation as the model sees it: your messages,
 attachment contents, tool results, recalled memories, and the system prompt.
@@ -20,11 +25,22 @@ public model list from models.dev (<code>https://models.dev/api.json</code>) at 
 a day, to know each model&rsquo;s context window, price and what it can read. The
 request is a plain GET carrying your IP address and standard HTTP headers;
 nothing about you or your conversations is sent.</p><h3 id=web-search>Web search</h3><p>The agent&rsquo;s web search queries DuckDuckGo directly from your device over
-HTTPS.</p><h3 id=model-voice-and-linux-downloads>Model, voice, and Linux downloads</h3><p>Downloading an on-device model, a voice model, or a Linux rootfs makes a
-request to the host that serves the file: Hugging Face for models and voice
-recognition models, GitHub for voice synthesis models, and the Alpine Linux
-CDN for the rootfs. The request includes your IP address and standard HTTP
-headers, under the host&rsquo;s own privacy policy. The files are stored on your
+HTTPS.</p><h3 id=the-agent-browser>The agent browser</h3><p>On desktop, you can give the agent a browser to drive: the embedded Helium or
+a Chromium-family browser you pick. It is off until you pick one. While the
+agent uses it:</p><ul><li>The sites it opens receive requests directly from your device, carrying your
+IP address, standard HTTP headers, and the cookies of the agent browser&rsquo;s
+own profile, under each site&rsquo;s own privacy policy.</li><li>The text of the pages it reads and the screenshots it takes are sent to your
+LLM provider as tool results, like any other tool&rsquo;s output.</li><li>A file uploaded to a page is sent to that site. Depending on the upload
+setting, the classifier model sees the file&rsquo;s path before it goes.</li><li>What you type into the sign-in prompt goes from the app to the page and
+nowhere else. It is not sent to your LLM provider, not saved in the
+conversation, and not synced. While a sign-in is in effect, it is removed
+from the page text the agent reads, and screenshots of the site you signed
+into are refused.</li></ul><h3 id=model-voice-browser-and-linux-downloads>Model, voice, browser, and Linux downloads</h3><p>Downloading an on-device model, a voice model, the embedded browser, or a
+Linux rootfs makes a request to the host that serves the file: Hugging Face
+for models and voice recognition models, GitHub for voice synthesis models
+and the Helium browser, and the Alpine Linux CDN for the rootfs. The request
+includes your IP address and standard HTTP headers, under the host&rsquo;s own
+privacy policy. The files are stored on your
 device; inference and voice processing happen locally.</p><h3 id=marketplace>Marketplace</h3><p>Browsing the marketplace fetches its catalog and entry files from GitHub
 Pages (<code>byterepair.github.io</code>), and the files of a remote entry from
 <code>raw.githubusercontent.com</code>. The requests are plain GETs carrying your IP
@@ -46,8 +62,8 @@ cannot read the conversation. If you use a TURN relay for network traversal,
 it also sees only encrypted traffic.</p><h2 id=on-device-model>On-device model</h2><p>The optional bundled model (llama.cpp) runs entirely on your device. Its
 server binds to localhost and makes no network calls.</p><h2 id=permissions>Permissions</h2><p>The app requests the following permissions, each used only for its feature:</p><ul><li><strong>Microphone</strong> — voice mode listening.</li><li><strong>Speech recognition</strong> (iOS) — hearing voice mode, on the device only.</li><li><strong>Camera</strong> — scanning a sync pairing QR code.</li><li><strong>Local network</strong> (iOS) — syncing with your other devices on the same
 network, and reaching a model or service you run on it.</li><li><strong>Notifications</strong> — announcing reminders and finished turns.</li><li><strong>Exact alarms</strong> (Android) — firing reminders on time.</li><li><strong>Boot-completed</strong> (Android) — re-arming reminders after device restart.</li><li><strong>Foreground service</strong> (Android) — keeping the process alive while a turn
-runs, while voice mode is active, or while a model downloads.</li><li><strong>Internet</strong> — calling your configured LLM provider, web search, the
-marketplace, and sync.</li></ul><p>No permission collects data in the background.</p><h2 id=children>Children</h2><p>The app is not intended for use by children. It is recommended that a parent
+runs, while voice mode is active, or while a model downloads.</li><li><strong>Internet</strong> — calling your configured LLM provider, web search, the agent
+browser, the marketplace, and sync.</li></ul><p>No permission collects data in the background.</p><h2 id=children>Children</h2><p>The app is not intended for use by children. It is recommended that a parent
 or guardian supervise any use by a minor.</p><h2 id=contact>Contact</h2><p>For privacy inquiries, open a GitHub discussion at
 <a href=https://github.com/ByteRepair/entoli/discussions>https://github.com/ByteRepair/entoli/discussions</a>.</p></div></article><a href=/products/ class=back-link>All Products</a></main><style>footer{border-top:3px double var(--rule);padding:2.5rem 0;text-align:center}.footer-brand{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:.75rem}.footer-brand img{width:48px;height:48px}.footer-brand-text{font-family:var(--font-display);font-weight:900;font-size:1.75rem}.footer-social{display:flex;justify-content:center;gap:1rem;margin-bottom:.75rem}.footer-social a{color:var(--ink);text-decoration:none}.footer-social a:hover{color:var(--accent)}.footer-licence{font-size:.85rem;color:var(--ink-soft);margin-bottom:.35rem}.copyright{font-size:.85rem;color:var(--ink-faint)}</style><footer><div class=container><div class=footer-brand><img src=/images/logo_512.png alt="Byte Repair" width=48>
 <span class=footer-brand-text>Byte Repair</span></div><div class=footer-social><a href=https://github.com/ByteRepair target=_blank rel=noopener aria-label="Byte Repair on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63.0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577.0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93.0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176.0.0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22.0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22.0 1.606-.015 2.896-.015 3.286.0.315.21.69.825.573C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
